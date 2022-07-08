@@ -112,7 +112,7 @@ class Configuration {
 		this.logger = new ILogger();
 		this.serviceUrl = 'http://www.kaltura.com';
 		this.serviceBase = '/api_v3/service';
-		this.timeout = 30000;
+		this.timeout = 90000;
 		this.agentOptions = null;
 	}
 
@@ -280,7 +280,9 @@ class RequestBuilder extends kaltura.VolatileRequestData {
 		let options = {
 			url: requestUrl,
 			method: 'post',
-			headers: headers
+			headers: headers,
+			maxContentLength: Infinity,
+			maxBodyLength: Infinity
 		};
 
 		let jsonBody = JSON.stringify(json, (key, value) => (value === null ? undefined : value));
